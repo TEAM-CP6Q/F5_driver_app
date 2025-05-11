@@ -10,7 +10,7 @@
         "NSAllowsArbitraryLoads": true
       },
       "bundleIdentifier": "com.refresh.driverapp",
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.0.0",
       
     },
     "android": {

@@ -1,17 +1,17 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, StatusBar, Platform } from 'react-native';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
+const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? 44 : StatusBar.currentHeight || 24;
 
 const main = StyleSheet.create({
-  // 기본 컨테이너 스타일
   container: {
     flex: 1,
     backgroundColor: '#f6f6f6',
     position: 'relative',
   },
-  
-  // 헤더 스타일
+
+  // 헤더
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -52,8 +52,8 @@ const main = StyleSheet.create({
     color: 'white',
     fontSize: 14,
   },
-  
-  // 탭 스타일
+
+  // 탭
   tabContainer: {
     flexDirection: 'row',
     backgroundColor: 'white',
@@ -74,35 +74,10 @@ const main = StyleSheet.create({
   activeTabText: {
     color: '#5c8d62',
   },
-  
-  // 검색바 스타일
-  searchContainer: {
-    margin: 10,
-    position: 'relative',
-  },
-  searchInput: {
-    backgroundColor: 'white',
-    borderRadius: 20,
-    paddingVertical: 12,
-    paddingLeft: 15,
-    paddingRight: 40,
-    fontSize: 16,
-    borderWidth: 1,
-    borderColor: '#eaeaea',
-  },
-  searchIconContainer: {
-    position: 'absolute',
-    right: 15,
-    top: 12,
-  },
-  searchIcon: {
-    fontSize: 20,
-    color: '#5c8d62',
-  },
-  
-  // 지도 스타일
+
+  // 지도
   mapContainer: {
-    height: SCREEN_HEIGHT * 0.5, // 수거 상세를 위해 지도 높이 50%로 설정
+    height: SCREEN_HEIGHT * 0.5,
     width: '100%',
   },
   mapPlaceholder: {
@@ -119,8 +94,8 @@ const main = StyleSheet.create({
     fontSize: 16,
     color: '#555',
   },
-  
-  // 수거지 카드 스타일
+
+  // 수거지 카드
   pickupCard: {
     backgroundColor: 'white',
     borderTopLeftRadius: 20,
@@ -135,7 +110,7 @@ const main = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    zIndex: 20, // 수거카드가 다른 요소들보다 위에 표시되도록
+    zIndex: 20,
   },
   pickupCardHeader: {
     flexDirection: 'row',
@@ -199,8 +174,8 @@ const main = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
-  
-  // 수거 상세 내역 슬라이딩 패널 스타일
+
+  // 상세 슬라이드 패널
   detailsSlideContainer: {
     backgroundColor: 'white',
     borderTopLeftRadius: 20,
@@ -215,8 +190,8 @@ const main = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    maxHeight: '80%', // 화면 높이의 80%까지 차지하도록
-    zIndex: 30, // 다른 모든 요소들보다 위에 표시되도록
+    maxHeight: '80%',
+    zIndex: 30,
   },
   slideHandle: {
     width: '100%',
@@ -232,8 +207,8 @@ const main = StyleSheet.create({
     borderRadius: 5,
   },
   detailsContent: {
-    paddingBottom: 20, // 하단 여백 추가
-    maxHeight: SCREEN_HEIGHT * 0.7, // 패널 최대 높이 제한
+    paddingBottom: 20,
+    maxHeight: SCREEN_HEIGHT * 0.7,
   },
   detailsSection: {
     paddingHorizontal: 16,
@@ -283,35 +258,8 @@ const main = StyleSheet.create({
     color: '#666',
     textAlign: 'center',
   },
-  
-  // 목록 핸들 스타일
-  listHandle: {
-    backgroundColor: 'white',
-    padding: 15,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 3,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    zIndex: 10, // 상세보기 및 수거 카드보다 낮은 zIndex
-  },
-  listHandleHidden: {
-    display: 'none', // 수거지 선택 시 핸들 숨김
-  },
-  listHeaderText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  
-  // 수거지 목록 모달 스타일
+
+  // 수거지 목록 모달
   modalContainer: {
     flex: 1,
     backgroundColor: 'white',
@@ -320,9 +268,12 @@ const main = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 16,
+    paddingTop: STATUS_BAR_HEIGHT + 8, // 상단 여백 확보
+    paddingBottom: 16,
+    paddingHorizontal: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
+    backgroundColor: 'white',
   },
   modalTitle: {
     fontSize: 20,
@@ -336,25 +287,8 @@ const main = StyleSheet.create({
     fontSize: 16,
     color: '#5c8d62',
   },
-  placeholder: {
-    width: 50,
-  },
-  modalTabContainer: {
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
-  modalTab: {
-    flex: 1,
-    paddingVertical: 16,
-    alignItems: 'center',
-  },
-  modalTabText: {
-    fontSize: 16,
-    color: '#888',
-  },
-  
-  // 수거지 목록 아이템 스타일
+
+  // 수거지 목록
   pickupListContainer: {
     paddingHorizontal: 16,
     paddingVertical: 10,
